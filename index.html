@@ -1,10 +1,10 @@
 <html>
 <head><title>CONTAGEM ATE A PRAIA</title></head>
 <body>
-<h1>Dia Da Praia</h1>
+<h1>Contagem regressiva</h1>
 <form name="form_main">
   <label for="numero">Data:</label> 
-  <input name='date_end' type="date" onblur="resetCountdown()" value="2023-11-17" readonly />
+  <input name='date_end' type="date" onblur="resetCountdown()" value="2023-11-17" readonly/>
   <br>
 </form>
 <div class="container">
@@ -17,12 +17,13 @@
   </ul>
 </div>
 
-<script>const second = 1000;
+<script>
+const second = 1000;
 const minute = second * 60;
 const hour = minute * 60;
 const day = hour * 24;
 
-let count_down = new Date('03/03/2025 00:00:00').getTime();
+let count_down = new Date('11/17/2023 20:20:00').getTime();
 let x = setInterval(() => countDown(), second);
 
 function countDown() {
@@ -40,6 +41,7 @@ function resetCountdown() {
   let date_end = document.form_main.date_end.value;
   count_down = new Date(`${date_end} 00:00:00`).getTime();
   x = setInterval(() => countDown(), second);
-}</script>
+}
+</script>
 </body>
 </html>
