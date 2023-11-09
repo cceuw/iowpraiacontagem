@@ -1,20 +1,125 @@
 <html>
-<head><title>CONTAGEM ATE A PRAIA</title></head>
+<head><title>CONTAGEM ATE A PRAIA</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+.navbar {
+    transition: all 0.4s;
+	background-color: #fff;
+}
+
+.navbar .nav-link {
+    color: #4ca1af;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #4ca1af;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #4ca1af;
+}
+
+
+/* Change navbar styling on scroll */
+.navbar.active {
+    background: #4ca1af;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+    color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #555;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #555;
+}
+
+
+/* Change navbar styling on small viewports */
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #4ca1af;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}
+
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+.text-small {
+    font-size: 0.9rem !important;
+}
+
+
+body {
+    min-height: 110vh;
+    background-color: #4ca1af;
+    background-image: linear-gradient(135deg, #4ca1af 0%, #c4e0e5 100%);
+}
+
+.esquerda {
+text-align: right;
+}
+
+img{
+max-width:55px;
+    max-height:55px;
+    width: auto;
+    height: auto;
+}
+
+
+</style>
+</head>
 <body>
-<h1>Dia que iremos para a praia</h1>
-<form name="form_main">
-  <label for="numero">Data:</label> 
-  <input name='date_end' type="date" onblur="resetCountdown()" value="2023-11-17" readonly/>
-  <br>
-</form>
+
+<header class="header">
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">IOW na PRAIA</a>
+            <div id="navbarSupportedContent" class="esquerda" style="text-align: right;">
+<img src="iow ft.png" style ="">
+            </div>
+        </div>
+    </nav>
+</header>
+
+
 <div class="container">
-  <h1>Contagem regressiva até a data selecionada:</h1>
-  <ul>
-    <li><span id="days"></span>days</li>
-    <li><span id="hours"></span>Hours</li>
-    <li><span id="minutes"></span>Minutes</li>
-    <li><span id="seconds"></span>Seconds</li>
-  </ul>
+    <div class="pt-5 text-white">
+        <header class="py-5 mt-5">
+            <h1 class="display-4">Dia que iremos para a praia</h1>
+		<form name="form_main">
+  			<label for="numero">Data:</label> 
+  				<input class="list-group-item disabled" name='date_end' type="date" onblur="resetCountdown()" value="2023-11-17" readonly/>
+		</form>
+	
+<div class="py-5">
+  <h1 class="display-4">Contagem regressiva até a data selecionada:</h1>
+  
+    <p><strong>Dias:</strong> <span id="days"></span></p>
+    <p><strong>Horas:</strong> <span id="hours"></span></p>
+    <p><strong>Minutos:</strong> <span id="minutes"></span></p>
+    <p><strong>Segundos:</strong> <span id="seconds"></span></p>
+  
+</div>
+</div>
 </div>
 
 <script>
@@ -42,6 +147,16 @@ function resetCountdown() {
   count_down = new Date(`${date_end} 00:00:00`).getTime();
   x = setInterval(() => countDown(), second);
 }
+
+$(function () {
+    $(window).on('scroll', function () {
+        if ( $(window).scrollTop() > 10 ) {
+            $('.navbar').addClass('active');
+        } else {
+            $('.navbar').removeClass('active');
+        }
+    });
+});
 </script>
 </body>
 </html>
