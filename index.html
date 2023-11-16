@@ -85,24 +85,145 @@ max-width:55px;
     height: auto;
 }
 
+h1 {
+	color:#fff;
+	text-align: center;
+	padding: 100;
+}
 
+
+
+h2 {
+	color:#fff;
+	text-align: center;
+}
+
+
+h3 {
+	color:#fff;
+	text-align: center;
+}
+
+header{
+    position: fixed;
+    top:0;
+    left: 0;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    left: 0;
+}
+
+
+.button {
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 4px;
+  word-spacing: 8px;
+  font-weight: 700;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  background-color: #4ca1af;
+  transition: .3s;
+  cursor: pointer;
+  text-align: center;
+  background-image: linear-gradient(135deg, #4ca1af 0%, #c4e0e5 100%);
+  box-shadow: 0 0 10px 0px black;
+}
+
+.button:hover {
+  box-shadow: 0 0 0px 0px black;
+}
+
+.botao {
+  text-align: center;
+}
+
+canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.test{
+
+background-color:#fff;
+
+}
 </style>
 </head>
+
 <body onload="mensagemAoCarregarPagina();">
 
+<divclass="test">
+            <div class="test">
+                <header>
+                    <div ></div>
+                </header>
+                <div class="test">Contagem das Horas no fim do site ⬇️</div>
+            </div>
+</div>
+
+<h1>É HOJE CARALHO</h1>
+
+<h2>Lembrese</h2>
+<h3>É de extrema importância que todos estejam preparados, e levem pelo menos 95% dos itens da lista. Caso esqueçam algum item, compre ou pegue emprestado. </h3>
+
+<h4>Roupas em geral:</h4> 
+•	Bermudas de praia ou tecido leve 
+•	Sungas (caso queiram)
+•	Camisetas ou regatas. (Recomendado: Caso tenham, camisa proteção UV) 
+•	Peças de roupas mais arrumadinhas no caso de passeios noturnos. 
+•	Cuecas ou calcinhas e meias. 
+•	Tênis e chinelo. 
+•	Pijama ou roupas de dormir. 
+•	1 blusa de frio ou calça caso ache necessário. 
+</br>
+<h4> Itens de Higiene Pessoal:</h4> 
+•	Escova de dentes, pasta e fio dental. 
+•	Sabonete 
+•	Shampoo e Condicionador 
+•	Escova de cabelo
+•	Desodorante e Perfume 
+•	Protetor Solar e pós sol. 
+•	Hidratante e itens de SkinCare 
+•	Bucha para banho 
+•	Repelente
+</br>
+<h4> Outros:</h4> 
+•	Toalhas para banho 
+•	Toalha para praia
+•	Bolsa de Praia
+•	Fronha e lençol. 
+•	Cobertor (caso queiram) 
+•	Canga 
+•	Óculos de sol
+•	Medicamentos 
+•	Boné ou Viseira 
+•	Acessórios 
+•	Maquiagem 
+•	Carregador de celular 
+•	Fones de ouvido
+•	Carteira com documentos, dinheiro e cartões. 
+•	Lenços Umedecidos. 
+•	Preservativos.
+</br>
+</br>
+</br>
+</br>
+</br>
 <div class="container">
-    <div class="pt-5 text-white">
-        <header class="py-5 mt-5">
-            <h1 class="display-4">Dia que iremos para a praia</h1>
-		<form name="form_main">
-  			<label for="numero">Data:</label> 
-  				<input class="list-group-item disabled" name='date_end' type="date" onblur="resetCountdown()" value="2023-11-17" readonly/>
-		</form>
+    <div class="text-white">
 	
-<div class="py-5">
-  <h1 class="display-4">Contagem regressiva até a praia:</h1>
+  <h2 class="display-4">Contagem regressiva até a praia:</h2>
   
-    <p><strong>Dias:</strong> <span id="days"></span></p>
+    <p hidden ><strong>Dias:</strong> <span id="days"></span></p>
     <p><strong>Horas:</strong> <span id="hours"></span></p>
     <p><strong>Minutos:</strong> <span id="minutes"></span></p>
     <p><strong>Segundos:</strong> <span id="seconds"></span></p>
@@ -110,12 +231,82 @@ max-width:55px;
 </div>
 </div>
 </div>
-
+<canvas id="fireworkCanvas"></canvas>
 <script>
 
 function mensagemAoCarregarPagina(){
     alert("IOW VAI PRA PRAIA KRLLLL");
 }
+
+const particleCount = 150; // Experimente alterar a contagem de partículas e veja o que acontece
+const colors = ["Pink", "White"]; // Você não está limitado a apenas 2 cores aqui!
+const particles = [];
+
+const canvas = document.getElementById('fireworkCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+class Particle {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.radius = Math.random() * 2 + 1;
+    this.velocity = {
+      x: Math.random() * 2 - 1,
+      y: Math.random() * 2 - 1
+    };
+    this.alpha = 1;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  update() {
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
+    this.alpha -= 0.01;
+    this.radius -= 0.01;
+    this.draw();
+  }
+}
+
+function createFirework(x, y) {
+  for (let i = 0; i < particleCount; i++) {
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const particle = new Particle(x, y, color);
+    particles.push(particle);
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < particles.length; i++) {
+    particles[i].update();
+
+    if (particles[i].alpha <= 0 || particles[i].radius <= 0) {
+      particles.splice(i, 1);
+      i--;
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+canvas.addEventListener('click', function(event) {
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+  createFirework(mouseX, mouseY);
+});
+
+animate();
 
 const second = 1000;
 const minute = second * 60;
@@ -151,6 +342,10 @@ $(function () {
         }
     });
 });
+
+
+
+
 </script>
 </body>
 </html>
